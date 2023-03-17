@@ -9,39 +9,33 @@ const renderCards = (prodList) => {
   let html = "";
 
   prodList.forEach((element) => {
-    // TODO ÄNDRA MALL
     let htmlSegment = `
     <div class="col-lg-4 col-md-6">
-    <div class="card mb-4 rounded-3 shadow-sm">
-      <div class="card-header py-3">
-        <h4 class="my-0 fw-normal">Product name here</h4>
+    <div class="card mb-4 rounded-3 shadow-sm border-primary">
+      <div
+        class="card-header py-3 text-white bg-primary border-primary"
+      >
+        <h4 class="my-0 fw-normal">${element.title}</h4>
       </div>
       <div class="card-body">
         <h1 class="card-title pricing-card-title">
-          0<small class="text-muted fw-light"> SEK</small>
+          ${element.price}<small class="text-muted fw-light"> $</small>
         </h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>10 users included</li>
-          <li>2 GB of storage</li>
-          <li>Email support</li>
-          <li>Help center access</li>
-        </ul>
-        <button
-          type="button"
-          class="w-100 btn btn-lg btn-outline-primary"
-        >
-          Sign up for free
+        <p>${element.description}</p>
+        <button type="button" class="w-100 btn btn-lg btn-primary">
+          Contact us
         </button>
       </div>
     </div>
-  </div>`
+  </div>
+    `;
 
     html += htmlSegment;
   });
 
-  const productSection = document.querySelector(".generated-products");
-  console.log(productSection)
-  productSection.innerHTML = html;
+  const productsDiv = document.querySelector(".products");
+  console.log(productsDiv);
+  productsDiv.innerHTML = html;
 };
 
 renderCards(data);
