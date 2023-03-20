@@ -15,15 +15,15 @@ const renderCards = (prodList) => {
       <div
         class="card-header py-3 text-white bg-primary border-primary"
       >
-        <h4 class="my-0 fw-normal">${element.title}</h4>
+        <h4 class="my-0 fw-normal">${element.category}</h4>
       </div>
       <div class="card-body">
         <h1 class="card-title pricing-card-title">
           ${element.price}<small class="text-muted fw-light"> $</small>
         </h1>
-        <p>${element.description}</p>
+        <p>${element.title}</p>
         <button type="button" class="w-100 btn btn-lg btn-primary">
-          Contact us
+          Add to cart
         </button>
       </div>
     </div>
