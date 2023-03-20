@@ -8,6 +8,20 @@ html {
   font-size: 1.1rem;
 }
 
+.card {
+  min-height: 380px;
+  min-width: 220px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card .btn {
+  margin-top: auto;
+}
+
 /* Space out content a bit */
 body {
   padding-top: 20px;

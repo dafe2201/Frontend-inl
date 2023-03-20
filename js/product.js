@@ -1,42 +1,29 @@
 "use strict";
 import { getProductById } from "./api.js";
 
+// Fetch Item From LocalStorage
 const productID = JSON.parse(localStorage.getItem("ID"));
 
 const data = await getProductById(productID);
 
-/*
-let htmlSegment = `
-<div class="col-lg-4 col-md-6">
-<div class="card mb-4 rounded-3 shadow-sm border-black">
-  <div
-    class="card-header py-3 text-black border-black"
-  >
-  <img class="card-img-top" src="https://picsum.photos/200/200?random=1" alt="Card image cap">
-    <h4 class="my-1 fw-normal">${element.category}</h4>
-  </div>
-  <div class="card-body">
-    <h1 class="card-title pricing-card-title">
-      ${element.price}<small class="text-muted fw-light"> $</small>
-    </h1>
-    <p>Artikel ${element.id}</p>
-    <p>${element.title}</p>
-    <a href="/product.html" id="${element.id}" class="w-100 btn btn-lg btn-dark save-id">
-      Show more
-    </a>
-  </div>
-</div>
-</div>
-`;
-
-html += htmlSegment;
-*/
-const renderSpecificProduct = (data) => {
+const renderProduct = (data) => {
   // Ändra InnerHTML efter products värden
-  const specificProductDiv = document.querySelector(".specific-product");
+  const specificProductDiv = document.querySelector(".jumbo-product");
 
-  let htmlContent = `<p>${data.id}</p>`;
+  //A HREFEN SKA ÄNDRAS FRÅN CHECKOUT I VG-DELEN
+  let htmlContent = `
+        <img class=my-5" src="${data.image}" width=200px height=200px style="object-fit: fill">
+        <h2 class="my-5"> ${data.title}</h2>
+        <p class="my-5 lead fs-4"><strong>Category:</strong> ${data.category}</p>
+        <p class="my-5 lead fs-4"><strong>Description:</strong> ${data.description}</p>
+        <p class="my-5 lead fs-4"><strong>Price: </strong> ${data.price} $</p>
+        <p class="my-5 lead fs-4"><strong>Rating:</strong> ${data.rating.rate}/5 (${data.rating.count} votes)</p>
+        <a href="/checkout.html" class="my-3 w-100 btn btn-lg btn-dark"> 
+          Add to cart
+        </a>
+        `;
+
   specificProductDiv.innerHTML = htmlContent;
 };
 
-renderSpecificProduct(data);
+renderProduct(data);
