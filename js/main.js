@@ -15,6 +15,7 @@ const renderCards = (prodList) => {
       <div
         class="card-header py-3 text-white bg-primary border-primary"
       >
+      <img class="card-img-top" src="https://picsum.photos/200/200?random=1" alt="Card image cap">
         <h4 class="my-0 fw-normal">${element.category}</h4>
       </div>
       <div class="card-body">
