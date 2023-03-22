@@ -7,18 +7,22 @@ const renderSucessMessage = async () => {
 
   const confirmationDiv = document.querySelector(".confirmation");
   if (productID == null) {
-    confirmationDiv.innerText = "Nothing to see here";
+    confirmationDiv.innerHTML = `<h1 class="my-5"> Nothing to see here </h1>`;
   } else {
     const data = await getProductById(productID);
 
-    const paragraphElement = document.createElement("p");
-    paragraphElement.classList.add("lead");
-    const textNode = document.createTextNode(
-      `Thanks for ordering ${data.title} ${data.price} $. If you ordered before noon we will ship your item the same day`
-    );
-    paragraphElement.appendChild(textNode);
+    let htmlContent = `
+    <div class="img-thumbnail"> 
+    <h1 class="my-5">THANK YOU FOR ORDERING THE FOLLOWING ITEM:</h1>
+      <img class=my-5" src="${data.image}" width=100px height=100px style="object-fit: fill">
+      <h2 class="my-5"> ${data.title}</h2>
+      <p class="my-5 lead fs-4"><strong>Category:</strong> ${data.category}</p>
+      <p class="my-5 lead fs-4"><strong>Description:</strong> ${data.description}</p>
+      <p class="my-5 lead fs-4"><strong>Price: </strong> ${data.price} $</p>
+      <p class="my-5 lead fs-4"><strong>Rating:</strong> ${data.rating.rate}/5 (${data.rating.count} votes)</p>
+      </div>`;
 
-    confirmationDiv.appendChild(paragraphElement);
+    confirmationDiv.innerHTML = htmlContent;
 
     // Reset localStorage
     localStorage.clear();
