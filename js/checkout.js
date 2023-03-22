@@ -111,13 +111,16 @@ function phoneNumberIsCorrect(phoneNumber) {
     phoneNumber.classList.add("invalid");
     phoneNumber.placeholder = "Not valid phone nr";
     return false;
+  } else {
+    phoneNumber.classList.remove("invalid");
+    return true;
   }
-  return true;
 }
 
 function zipIsCorrect(zip) {
   const validZip = /^[0-9]{3} [0-9]{2}$/g;
   if (zip.value.match(validZip)) {
+    zip.classList.remove("invalid");
     return true;
   } else {
     zip.classList.add("invalid");
@@ -128,9 +131,9 @@ function zipIsCorrect(zip) {
 
 function addressIsCorrect(address) {
   if (address.value.length > 3 && address.value.length < 51) {
+    address.classList.remove("invalid");
     return true;
   } else {
-    console.log("sug en get från address");
     address.classList.add("invalid");
     address.placeholder = "Please enter a valid address";
     return false;
@@ -139,10 +142,9 @@ function addressIsCorrect(address) {
 
 function countyIsCorrect(county) {
   if (county.value.length > 1 && county.value.length < 51) {
-    console.log("sug en pappegoja från county if");
+    county.classList.remove("invalid");
     return true;
   } else {
-    console.log("sug en get från county");
     county.classList.add("invalid");
     county.placeholder = "Enter a valid county";
     return false;
