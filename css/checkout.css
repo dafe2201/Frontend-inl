@@ -55,3 +55,8 @@
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
 }
+
+.invalid {
+  border-color: #900;
+  background-color: #fdd;
+}

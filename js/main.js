@@ -21,7 +21,7 @@ const renderCards = (prodList) => {
       <div class="card-body">
         <p class="lead">${element.title}</p>
         <h2 class="card-title pricing-card-title my-3">
-        ${element.price}<small class="text-muted fw-light">$</small>
+        ${element.price}<small class="text-muted fw-light"> $</small>
         </h2>
         <a href="/product.html" id="${element.id}" class="w-100 btn btn-lg btn-dark save-id">
           Show more
