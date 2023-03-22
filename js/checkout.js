@@ -34,58 +34,55 @@ function validate(e) {
 
   const email = document.getElementById("email");
   const address = document.getElementById("address");
-  const country = document.getElementById("country");
-  const state = document.getElementById("state");
+  const county = document.getElementById("county");
   const zip = document.getElementById("zip");
 
-  const card = document.getElementById("cc-number");
-  const expiration = document.getElementById("cc-expiration");
-  const cvv = document.getElementById("cc-cvv");
-
-  const allElements = [];
-  elementList.push(
-    firstName,
-    lastName,
-    email,
-    address,
-    country,
-    state,
-    zip,
-    card,
-    expiration,
-    cvv
-  );
-
-  const isNotEmpty = stringIsCorrectFormat(allElements);
-  console.log(isNotEmpty);
+  const phoneNumber = document.getElementById("phoneNumber");
 
   const firstNameCorrect = nameIsCorrectLength(firstName);
-  console.log(firstNameCorrect);
 
   const lastNameCorrect = nameIsCorrectLength(lastName);
-  console.log(lastNameCorrect);
 
   const emailCorrect = emailIsCorrect(email);
-  console.log(emailCorrect);
+
+  const phoneNrCorrectFormat = phoneNumberIsCorrect(phoneNumber);
+
+  const addressCorrect = addressIsCorrect(address);
+  const zipCorrect = zipIsCorrect(zip);
+  const countyCorrect = countyIsCorrect(county);
+
+  const formBools = [
+    firstNameCorrect,
+    lastNameCorrect,
+    emailCorrect,
+    phoneNrCorrectFormat,
+    addressCorrect,
+    zipCorrect,
+    countyCorrect,
+  ];
+
+  checkFormIsValid(formBools);
 }
 
-function stringIsCorrectFormat(elementList) {
-  elementList.forEach((element) => {
-    if (element.value == null || element.value.length == 0) {
-      element.classList.add("invalid");
-      element.placeholder = "Cannot be empty";
-      return false;
-    } else {
-      element.classList.remove("invalid");
-    }
-    return true;
-  });
-}
+const checkFormIsValid = (listOfBooleans) => {
+  let checker = (listOfBooleans) =>
+    listOfBooleans.every((element) => element === true);
+
+  console.log(listOfBooleans);
+
+  if (checker(listOfBooleans) === true) {
+    console.log("Form Complete");
+    // Simulate an HTTP redirect:
+    window.location.replace("/confirmation.html");
+  } else {
+    console.log("Form not complete");
+  }
+};
 
 function nameIsCorrectLength(name) {
-  if (name.value.length < 2 || name.value.length > 50) {
+  if (name.value.length <= 2 || name.value.length > 50) {
     name.classList.add("invalid");
-    name.placeholder = "please enter a valied name";
+    name.placeholder = "Please enter a valid name";
     return false;
   } else {
     name.classList.remove("invalid");
@@ -94,17 +91,60 @@ function nameIsCorrectLength(name) {
 }
 
 function emailIsCorrect(email) {
-  if (email.value.includes("@") || email.value.length > 50) {
+  if (
+    !email.value.includes("@") ||
+    email.value.length > 50 ||
+    email.value.length == 0
+  ) {
     email.classList.add("invalid");
     email.placeholder = "Please enter a valid email";
     return false;
   } else {
     email.classList.remove("invalid");
+    return true;
+  }
+}
+
+function phoneNumberIsCorrect(phoneNumber) {
+  const validFormat = /^[\d()-]{1,50}$/gm;
+  if (!phoneNumber.value.match(validFormat)) {
+    phoneNumber.classList.add("invalid");
+    phoneNumber.placeholder = "Not valid phone nr";
+    return false;
   }
   return true;
 }
 
-function phoneNumberIsCorrect(phoneNumber) {
-  // Får innehålla siffror, bindestreck och parenteser (lol varför), max 50 tecken.
-  // Behöver nog regexa skiten.
+function zipIsCorrect(zip) {
+  const validZip = /^[0-9]{3} [0-9]{2}$/g;
+  if (zip.value.match(validZip)) {
+    return true;
+  } else {
+    zip.classList.add("invalid");
+    zip.placeholder = "XXX XX";
+    return false;
+  }
+}
+
+function addressIsCorrect(address) {
+  if (address.value.length > 3 && address.value.length < 51) {
+    return true;
+  } else {
+    console.log("sug en get från address");
+    address.classList.add("invalid");
+    address.placeholder = "Please enter a valid address";
+    return false;
+  }
+}
+
+function countyIsCorrect(county) {
+  if (county.value.length > 1 && county.value.length < 51) {
+    console.log("sug en pappegoja från county if");
+    return true;
+  } else {
+    console.log("sug en get från county");
+    county.classList.add("invalid");
+    county.placeholder = "Enter a valid county";
+    return false;
+  }
 }

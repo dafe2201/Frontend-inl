@@ -117,6 +117,20 @@
                   </div>
                 </div>
 
+                <div class="col-md-5">
+                  <label for="phoneNumber" class="form-label"
+                    >Phone Number</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="phoneNumber"
+                    placeholder="Enter Phone Number"
+                    required
+                  />
+                  <div class="invalid-feedback">Phone number required.</div>
+                </div>
+
                 <div class="col-12">
                   <label for="address" class="form-label">Address</label>
                   <input
@@ -131,34 +145,15 @@
                   </div>
                 </div>
 
-                <div class="col-md-5">
-                  <label for="country" class="form-label">Country</label>
-                  <select class="form-select" id="country" required>
-                    <option>Choose...</option>
-                    <option>United States</option>
-                    <option>Germany</option>
-                    <option>Norway</option>
-                    <option>Sweden</option>
-                    <option>Cyprus</option>
-                    <option>Denmark</option>
-                    <option>Romania</option>
-                    <option>Greece</option>
-                    <option>France</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please select a valid country.
-                  </div>
-                </div>
-
                 <div class="col-6">
-                  <label for="state" class="form-label"
-                    >State <span class="text-muted"></span
+                  <label for="county" class="form-label"
+                    >County <span class="text-muted"></span
                   ></label>
                   <input
                     type="text"
                     class="form-control"
-                    id="state"
-                    placeholder="State"
+                    id="county"
+                    placeholder="County"
                   />
                   <div class="invalid-feedback">State required.</div>
                 </div>
